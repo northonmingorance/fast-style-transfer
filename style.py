@@ -6,6 +6,7 @@ from optimize import optimize
 from argparse import ArgumentParser
 from utils import save_img, get_img, exists, list_files
 import evaluate
+from datetime import datetime
 
 CONTENT_WEIGHT = 7.5e0
 STYLE_WEIGHT = 1e2
@@ -147,6 +148,7 @@ def main():
     for preds, losses, i, epoch in optimize(*args, **kwargs):
         style_loss, content_loss, tv_loss, loss = losses
 
+        print('Current Time:', datetime.now().time())
         print('Epoch %d, Iteration: %d, Loss: %s' % (epoch, i, loss))
         to_print = (style_loss, content_loss, tv_loss)
         print('style: %s, content:%s, tv: %s' % to_print)
